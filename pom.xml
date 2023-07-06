@@ -2,21 +2,38 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>de.quoss.quarkus</groupId>
     <artifactId>quarkus-projects</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0</version>
     <packaging>pom</packaging>
+    <name>quoss :: quarkus :: quarkus-projects</name>
     <properties>
+        <compiler-plugin.version>3.11.0</compiler-plugin.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <quarkus.platform.version>3.2.0.Final</quarkus.platform.version>
         <failsafe-surefire.version>3.1.2</failsafe-surefire.version>
     </properties>
     <modules>
+        <module>guides</module>
+        <module>logging</module>
         <module>quarkus-mssql</module>
     </modules>
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>io.quarkus.platform</groupId>
+                <artifactId>quarkus-bom</artifactId>
+                <version>${quarkus.platform.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
     <build>
         <pluginManagement>
             <plugins>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-compiler-plugin</artifactId>
-                    <version>3.10.1</version>
+                    <version>${compiler-plugin.version}</version>
                     <configuration>
                         <release>17</release>
                     </configuration>
@@ -24,7 +41,7 @@
                 <plugin>
                     <groupId>io.quarkus.platform</groupId>
                     <artifactId>quarkus-maven-plugin</artifactId>
-                    <version>${quarkus.version}</version>
+                    <version>${quarkus.platform.version}</version>
                     <extensions>true</extensions>
                     <executions>
                         <execution>

@@ -3,23 +3,10 @@
     <parent>
         <groupId>de.quoss.quarkus</groupId>
         <artifactId>quarkus-projects</artifactId>
-        <version>1.0-SNAPSHOT</version>
+        <version>1.0</version>
     </parent>
     <artifactId>quarkus-mssql</artifactId>
-    <properties>
-        <quarkus.version>3.2.0.Final</quarkus.version>
-    </properties>
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>io.quarkus.platform</groupId>
-                <artifactId>quarkus-bom</artifactId>
-                <version>${quarkus.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
+    <name>quoss :: quarkus :: quarkus-mssql</name>
     <dependencies>
         <dependency>
             <groupId>io.quarkus</groupId>

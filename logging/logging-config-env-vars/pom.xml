@@ -1,0 +1,17 @@
+<project>
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>de.quoss.quarkus</groupId>
+        <artifactId>logging</artifactId>
+        <version>1.0</version>
+    </parent>
+    <artifactId>logging-config-env-vars</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <name>quoss :: quarkus :: logging :: logging-config-env-vars</name>
+    <dependencies>
+        <dependency>
+            <groupId>io.quarkus</groupId>
+            <artifactId>quarkus-core</artifactId>
+        </dependency>
+    </dependencies>
+</project>

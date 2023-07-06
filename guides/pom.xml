@@ -1,0 +1,15 @@
+<project>
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>de.quoss.quarkus</groupId>
+        <artifactId>projects</artifactId>
+        <version>1.0</version>
+    </parent>
+    <artifactId>guides</artifactId>
+    <version>1.0</version>
+    <packaging>pom</packaging>
+    <name>quoss :: quarkus :: guides</name>
+    <modules>
+        <module>getting-started</module>
+    </modules>
+</project>
