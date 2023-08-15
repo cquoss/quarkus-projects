@@ -1,11 +1,16 @@
 <project>
     <modelVersion>4.0.0</modelVersion>
     <groupId>de.quoss.quarkus</groupId>
-    <artifactId>projects</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <artifactId>quarkus-projects</artifactId>
+    <version>1.0</version>
     <packaging>pom</packaging>
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <quarkus.version>3.2.3.Final</quarkus.version>
+    </properties>
     <modules>
-        <module>quarkus-</module>
+        <!-- module>quarkus-agroal-microsoft-sql-server</module -->
+        <module>quarkus-hello-world</module>
     </modules>
     <build>
         <pluginManagement>
@@ -13,9 +18,9 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-compiler-plugin</artifactId>
-                    <version>3.10.1</version>
+                    <version>3.11.0</version>
                     <configuration>
-                        <release>11</release>
+                        <release>17</release>
                     </configuration>
                 </plugin>
             </plugins>

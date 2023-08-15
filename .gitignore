@@ -4,3 +4,11 @@ target/
 # JetBrains IntelliJ IdeaIU
 .idea/
 *.iml
+
+# Eclipse
+.classpath
+.project
+.settings/
+
+# Apache NetBeans
+nb-configuration.xml
