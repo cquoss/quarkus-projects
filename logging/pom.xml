@@ -1,0 +1,14 @@
+<project>
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>de.quoss.quarkus</groupId>
+        <artifactId>quarkus-projects</artifactId>
+        <version>1.0</version>
+    </parent>
+    <artifactId>logging</artifactId>
+    <packaging>pom</packaging>
+    <name>quoss :: quarkus :: logging</name>
+    <modules>
+        <module>logging-config-env-vars</module>
+    </modules>
+</project>
