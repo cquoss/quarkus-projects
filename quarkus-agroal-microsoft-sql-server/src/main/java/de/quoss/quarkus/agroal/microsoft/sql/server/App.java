@@ -6,10 +6,12 @@ import java.sql.SQLException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import io.agroal.api.AgroalDataSource;
+
 import io.quarkus.runtime.QuarkusApplication;
 import io.quarkus.runtime.annotations.QuarkusMain;
 import jakarta.inject.Inject;
+
+import javax.sql.DataSource;
 
 @QuarkusMain
 public class App implements QuarkusApplication {
@@ -17,7 +19,7 @@ public class App implements QuarkusApplication {
 	private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
 	
 	@Inject
-	AgroalDataSource dataSource;
+	DataSource dataSource;
 	
 	@Override
 	public int run(final String... args) {

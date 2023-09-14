@@ -10,8 +10,9 @@
     <description>Collection of Quarkus only projects (not Camel Quarkus).</description>
     <properties>
         <compiler-plugin.version>3.11.0</compiler-plugin.version>
+        <msal4j.version>1.13.10</msal4j.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <quarkus.platform.version>3.2.3.Final</quarkus.platform.version>
+        <quarkus.platform.version>3.3.2</quarkus.platform.version>
         <failsafe-surefire.version>3.1.2</failsafe-surefire.version>
     </properties>
     <modules>
@@ -19,7 +20,7 @@
         <module>in-memory-log-handler-example</module>
         <module>logging</module>
         <module>narayana-helper</module>
-        <!-- module>quarkus-agroal-microsoft-sql-server</module -->
+        <module>quarkus-agroal-microsoft-sql-server</module>
         <module>quarkus-hello-world</module>
         <module>quarkus-mssql</module>
     </modules>
