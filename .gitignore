@@ -12,3 +12,6 @@ target/
 
 # Apache NetBeans
 nb-configuration.xml
+
+# Microsoft Visual Studio Code
+.vscode/
