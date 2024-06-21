@@ -21,6 +21,7 @@
         <module>logging</module>
         <module>narayana-helper</module>
         <module>quarkus-agroal-microsoft-sql-server</module>
+        <module>quarkus-picocli</module>
         <module>quarkus-hello-world</module>
         <module>quarkus-mssql</module>
     </modules>
