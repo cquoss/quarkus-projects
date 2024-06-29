@@ -9,10 +9,9 @@
     <name>quoss :: quarkus :: quarkus-projects</name>
     <description>Collection of Quarkus only projects (not Camel Quarkus).</description>
     <properties>
-        <compiler-plugin.version>3.13.0</compiler-plugin.version>
+        <maven.compiler.release>21</maven.compiler.release>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <quarkus.version>3.10.0</quarkus.version>
-        <failsafe-surefire.version>3.2.5</failsafe-surefire.version>
+        <quarkus.version>3.12.0</quarkus.version>
     </properties>
     <modules>
         <module>guides</module>
@@ -20,6 +19,7 @@
         <module>logging</module>
         <module>narayana-helper</module>
         <module>quarkus-agroal-microsoft-sql-server</module>
+        <module>quarkus-data-source</module>
         <module>quarkus-picocli</module>
         <module>quarkus-hello-world</module>
         <module>quarkus-mssql</module>
@@ -38,14 +38,6 @@
     <build>
         <pluginManagement>
             <plugins>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-compiler-plugin</artifactId>
-                    <version>${compiler-plugin.version}</version>
-                    <configuration>
-                        <release>21</release>
-                    </configuration>
-                </plugin>
                 <plugin>
                     <groupId>io.quarkus.platform</groupId>
                     <artifactId>quarkus-maven-plugin</artifactId>
@@ -69,7 +61,6 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-surefire-plugin</artifactId>
-                    <version>${failsafe-surefire.version}</version>
                     <configuration>
                         <systemPropertyVariables>
                             <java.util.logging.manager>org.jboss.logmanager.LogManager</java.util.logging.manager>
@@ -79,7 +70,6 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-failsafe-plugin</artifactId>
-                    <version>${failsafe-surefire.version}</version>
                     <executions>
                         <execution>
                             <goals>
