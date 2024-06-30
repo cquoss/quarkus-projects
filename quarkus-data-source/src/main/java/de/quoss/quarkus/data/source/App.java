@@ -9,9 +9,9 @@ import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -55,65 +55,46 @@ public class App implements QuarkusApplication {
     }
     
     private List<Map<String, Object>> executeSql(final String sql) {
-        final List<Map<String, Object>> result = new LinkedList<>();
         try (final Connection c = ds.getConnection();
                 final Statement s = c.createStatement()) {
             if (s.execute(sql)) {
                 final ResultSet rs = s.getResultSet();
-                final ResultSetMetaData rsmd = rs.getMetaData();
-                while (rs.next()) {
-                    final Map<String, Object> row = new HashMap<>();
-                    for (int i = 1; i <= rsmd.getColumnCount(); i++) {
-                        row.put(rsmd.getColumnName(i), rs.getObject(i));
-                    }
-                    result.add(row);
-                }
+                return processResultSet(rs);
             } else {
-                final Map<String, Object> row = new HashMap<>();
-                row.put("UPDATE_COUNT", s.getUpdateCount());
-                result.add(row);
+                return List.of(Map.of("UPDATE_COUNT", s.getUpdateCount()));
             }
         } catch (final SQLException e) {
             throw new IllegalStateException(e);
         }
-        if (result.isEmpty()) {
-            return Collections.emptyList();
-        }
-        return Collections.unmodifiableList(result);
     }
 
     private List<Map<String, Object>> executeSqlNestedArm(final String sql) {
-        final List<Map<String, Object>> result = new LinkedList<>();
         try (final Connection c = ds.getConnection();
                 final Statement s = c.createStatement()) {
             if (s.execute(sql)) {
-                getResult(s, result);
+                try (final ResultSet rs = s.getResultSet()) {
+                    return processResultSet(rs);
+                }
             } else {
-                final Map<String, Object> row = new HashMap<>();
-                row.put("UPDATE_COUNT", s.getUpdateCount());
-                result.add(row);
+                return List.of(Map.of("UPDATE_COUNT", s.getUpdateCount()));
             }
         } catch (final SQLException e) {
             throw new IllegalStateException(e);
         }
-        if (result.isEmpty()) {
-            return Collections.emptyList();
+    }
+
+    private static List<Map<String, Object>> processResultSet(final ResultSet rs) throws SQLException {
+        final List<Map<String, Object>> result = new ArrayList<>();
+        final ResultSetMetaData md = rs.getMetaData();
+        while (rs.next()) {
+            final Map<String, Object> row = new HashMap<>();
+            for (int i = 1; i <= md.getColumnCount(); i++) {
+                row.put(md.getColumnName(i), rs.getObject(i));
+            }
+            result.add(Collections.unmodifiableMap(row));
         }
         return Collections.unmodifiableList(result);
     }
 
-    private void getResult(final Statement s, List<Map<String, Object>> result) throws SQLException {
-        try (final ResultSet rs = s.getResultSet()) {
-            final ResultSetMetaData rsmd = rs.getMetaData();
-            while (rs.next()) {
-                final Map<String, Object> row = new HashMap<>();
-                for (int i = 1; i <= rsmd.getColumnCount(); i++) {
-                    row.put(rsmd.getColumnName(i), rs.getObject(i));
-                }
-                result.add(row);
-            }
-        }
-    }
-    
 }
 
