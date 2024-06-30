@@ -36,7 +36,7 @@ public class App implements QuarkusApplication {
         final String arg = Optional.ofNullable(args.length == 0 ? "" : args[0]).orElse("");
         switch (arg) {
             case "agroal-result-set-leaked", "" -> agroalResultSetLeaked();
-            default -> throw new IllegalStateException("Unknown funktion: " + args[0]);
+            default -> throw new IllegalStateException("Unknown function: " + args[0]);
         }
         Log.info("End");
         return 0;
