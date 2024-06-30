@@ -56,7 +56,8 @@ public class App implements QuarkusApplication {
     
     private List<Map<String, Object>> executeSql(final String sql) {
         try (final Connection c = ds.getConnection();
-                final Statement s = c.createStatement()) {
+                final Statement s =
+                    c.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE)) {
             if (s.execute(sql)) {
                 final ResultSet rs = s.getResultSet();
                 return processResultSet(rs);
@@ -70,7 +71,8 @@ public class App implements QuarkusApplication {
 
     private List<Map<String, Object>> executeSqlNestedArm(final String sql) {
         try (final Connection c = ds.getConnection();
-                final Statement s = c.createStatement()) {
+                final Statement s =
+                    c.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE)) {
             if (s.execute(sql)) {
                 try (final ResultSet rs = s.getResultSet()) {
                     return processResultSet(rs);
@@ -86,12 +88,17 @@ public class App implements QuarkusApplication {
     private static List<Map<String, Object>> processResultSet(final ResultSet rs) throws SQLException {
         final List<Map<String, Object>> result = new ArrayList<>();
         final ResultSetMetaData md = rs.getMetaData();
-        while (rs.next()) {
-            final Map<String, Object> row = new HashMap<>();
-            for (int i = 1; i <= md.getColumnCount(); i++) {
-                row.put(md.getColumnName(i), rs.getObject(i));
+        if (rs.last()) {
+            rs.beforeFirst();
+            while (rs.next()) {
+                final Map<String, Object> row = new HashMap<>();
+                for (int i = 1; i <= md.getColumnCount(); i++) {
+                    row.put(md.getColumnName(i), rs.getObject(i));
+                }
+                result.add(Collections.unmodifiableMap(row));
             }
-            result.add(Collections.unmodifiableMap(row));
+        } else {
+            return Collections.emptyList();
         }
         return Collections.unmodifiableList(result);
     }
