@@ -38,7 +38,7 @@ So when calling ...
 2024-06-29 22:11:25,925 INFO  [de.quo.qua.dat.sou.App] (main) Drop customer table: [{UPDATE_COUNT=0}]
 ```
 
-I consider the behaviour of the agroal pool a bug, as the result set is closed implicitely when the statement is closed.
+I consider the behaviour of the agroal pool a bug, as the result set is closed implicitly when the statement is closed.
 
 But on the other hand leads the explicitly closing of the result set to clearer coding maybe, though some boilerplate
 code is needed. Just answer this for yourself.
