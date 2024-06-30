@@ -1,6 +1,7 @@
 package de.quoss.quarkus.data.source;
 
 import io.quarkus.logging.Log;
+import io.quarkus.runtime.Quarkus;
 import io.quarkus.runtime.QuarkusApplication;
 import io.quarkus.runtime.annotations.QuarkusMain;
 import java.sql.Connection;
@@ -13,6 +14,7 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import javax.sql.DataSource;
 
 @QuarkusMain
@@ -23,12 +25,17 @@ public class App implements QuarkusApplication {
     public App (final DataSource ds) {
         this.ds = ds;
     }
+
+    public static void main(String... args) {
+        Quarkus.run(App.class, args);
+    }
     
     @Override
-    public int run(String[] args) {
+    public int run(String... args) {
         Log.info("Start");
-        switch (args[0]) {
-            case "agroal-result-set-leaked" -> agroalResultSetLeaked();
+        final String arg = Optional.ofNullable(args.length == 0 ? "" : args[0]).orElse("");
+        switch (arg) {
+            case "agroal-result-set-leaked", "" -> agroalResultSetLeaked();
             default -> throw new IllegalStateException("Unknown funktion: " + args[0]);
         }
         Log.info("End");
