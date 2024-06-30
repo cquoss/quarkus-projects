@@ -9,8 +9,13 @@
     <name>quoss :: quarkus :: quarkus-projects</name>
     <description>Collection of Quarkus only projects (not Camel Quarkus).</description>
     <properties>
+        <maven.compiler.plugin.version>3.13.0</maven.compiler.plugin.version>
+        <maven.surefire.plugin.version>3.3.0</maven.surefire.plugin.version>
+
+        <maven.compiler.proc>full</maven.compiler.proc>
         <maven.compiler.release>21</maven.compiler.release>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
         <quarkus.version>3.12.0</quarkus.version>
     </properties>
     <modules>
@@ -39,6 +44,11 @@
         <pluginManagement>
             <plugins>
                 <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>${maven.compiler.plugin.version}</version>
+                </plugin>
+                <plugin>
                     <groupId>io.quarkus.platform</groupId>
                     <artifactId>quarkus-maven-plugin</artifactId>
                     <version>${quarkus.version}</version>
@@ -61,6 +71,7 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-surefire-plugin</artifactId>
+                    <version>${maven.surefire.plugin.version}</version>
                     <configuration>
                         <systemPropertyVariables>
                             <java.util.logging.manager>org.jboss.logmanager.LogManager</java.util.logging.manager>
@@ -70,6 +81,7 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-failsafe-plugin</artifactId>
+                    <version>${maven.surefire.plugin.version}</version>
                     <executions>
                         <execution>
                             <goals>
