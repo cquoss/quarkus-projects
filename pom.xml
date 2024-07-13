@@ -28,6 +28,7 @@
         <module>quarkus-picocli</module>
         <module>quarkus-hello-world</module>
         <module>quarkus-mssql</module>
+        <module>quarkus-undertow</module>
     </modules>
     <dependencyManagement>
         <dependencies>
