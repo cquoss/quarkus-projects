@@ -26,7 +26,7 @@ public class App implements QuarkusApplication {
 		final String methodName = "run(String[])";
 		LOGGER.info("{} [data-source={}]", methodName, dataSource);
 		try (final Connection connection = dataSource.getConnection()) {
-			LOGGER.info("{} [connection={}]", methodName, connection);
+			LOGGER.info("{} [connection={},connection.schema={}]", methodName, connection, connection.getSchema());
 		} catch (final SQLException e) {
 			throw new IllegalStateException(e.getMessage(), e);
 		}

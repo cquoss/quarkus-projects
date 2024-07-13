@@ -28,7 +28,7 @@
         </dependency>
         <dependency>
             <groupId>io.quarkus</groupId>
-            <artifactId>quarkus-jdbc-mssql</artifactId>
+            <artifactId>quarkus-jdbc-db2</artifactId>
         </dependency>
         <!-- runtime scope -->
         <dependency>
