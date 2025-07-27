@@ -9,7 +9,7 @@
     <artifactId>quarkus-agroal-microsoft-sql-server</artifactId>
     <version>1.0-SNAPSHOT</version>
     <properties>
-        <msal4j.version>1.15.0</msal4j.version>
+        <msal4j.version>1.15.1</msal4j.version>
         <skipITs>true</skipITs>
     </properties>
     <dependencies>
